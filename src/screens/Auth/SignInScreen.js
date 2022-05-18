@@ -50,7 +50,9 @@ const SignInScreen = ({ navigation }) => {
 			<View style={styles.innerContainer}>
 				{verificationID == null ? (
 					<>
-						<Text style={{ fontFamily: "Gloria", fontSize: 32 }}>Kayıt Ol</Text>
+						<Text style={{ fontFamily: "Gloria", fontSize: 32 }}>
+							Giriş Yap
+						</Text>
 						<Text style={{ fontFamily: "Gloria", fontSize: 20, color: "gray" }}>
 							Telefon numaranı girerek uygulamaya giriş yap.
 						</Text>
@@ -134,7 +136,7 @@ const SignInScreen = ({ navigation }) => {
 										alignSelf: "center",
 									}}
 								>
-									Kayit ol
+									Kayıt ol
 								</Text>
 							</TouchableOpacity>
 						</View>

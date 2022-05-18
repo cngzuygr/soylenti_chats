@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 import React, { useState, useRef } from "react";
 import { StatusBar } from "expo-status-bar";
 import { MaskedTextInput } from "react-native-mask-text";
@@ -13,6 +14,12 @@ import { BarIndicator } from "react-native-indicators";
 
 const SignUpScreen = ({ navigation }) => {
 	const recaptchaVerifier = useRef(null);
+
+	const [selected, setSelected] = useState(false);
+
+	function termsHandler() {
+		console.log("terms pressed");
+	}
 
 	//signup
 	const [phoneNumber, setPhoneNumber] = useState();
@@ -93,6 +100,50 @@ const SignUpScreen = ({ navigation }) => {
 							numberOfLines={1}
 							caretHidden={true}
 						/>
+						<View style={{ flexDirection: "row", marginTop: 15 }}>
+							<BouncyCheckbox
+								isChecked={selected}
+								size={25}
+								fillColor="red"
+								unfillColor="#FFFFFF"
+								iconStyle={{ borderColor: "red" }}
+								onPress={() => setSelected(!selected)}
+							/>
+							<Text>
+								<Text
+									style={{
+										fontWeight: "bold",
+										textDecorationLine: "underline",
+									}}
+									onPress={termsHandler}
+								>
+									Kullanım Koşulları ve Gizlilik ve Veri Güvenliği
+								</Text>{" "}
+								Politikasini okudum, onaylıyorum.
+							</Text>
+						</View>
+						<View style={{ flexDirection: "row", marginTop: 15 }}>
+							<BouncyCheckbox
+								isChecked={selected}
+								size={25}
+								fillColor="red"
+								unfillColor="#FFFFFF"
+								iconStyle={{ borderColor: "red" }}
+								onPress={() => setSelected(!selected)}
+							/>
+							<Text>
+								<Text
+									style={{
+										fontWeight: "bold",
+										textDecorationLine: "underline",
+									}}
+									onPress={termsHandler}
+								>
+									Kişisel Verilerin Korunması ve İşlenmesi Metni'ni
+								</Text>{" "}
+								okudum ve kabul ediyorum.
+							</Text>
+						</View>
 						<TouchableOpacity
 							style={{
 								width: "80%",

@@ -13,7 +13,7 @@ import WelcomeScreen from "./src/screens/Auth/WelcomeScreen";
 import SignUpScreen from "./src/screens/Auth/SignUpScreen";
 import SignInScreen from "./src/screens/Auth/SignInScreen";
 //icons
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ChatScreen from "./src/screens/App/ChatScreen";
 import SettingsScreen from "./src/screens/App/SettingsScreen";
 import LocationScreen from "./src/screens/App/LocationScreen";
@@ -105,7 +105,7 @@ const AppRoot = ({ navigation }) => (
 				headerTitle: "Söylenti",
 				headerTitleAlign: "center",
 				headerTitleStyle: {
-					color: "#7AA095",
+					color: "#7965C3",
 					fontSize: 30,
 					fontFamily: "Gloria",
 					textShadowOffset: { width: 1, height: 1 },
@@ -122,7 +122,7 @@ const AppRoot = ({ navigation }) => (
 						}}
 						onPress={() => navigation.navigate("LocationScreen")}
 					>
-						<Ionicons name="md-location" size={32} color="black" />
+						<Ionicons name="md-location" size={32} color="#7965C3" />
 					</TouchableOpacity>
 				),
 				headerRight: () => (
@@ -135,7 +135,7 @@ const AppRoot = ({ navigation }) => (
 						}}
 						onPress={() => navigation.navigate("SettingsScreen")}
 					>
-						<Ionicons name="settings" size={32} color="black" />
+						<MaterialIcons name="settings" size={32} color="#7965C3" />
 					</TouchableOpacity>
 				),
 			}}
