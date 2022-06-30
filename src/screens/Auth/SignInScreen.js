@@ -213,26 +213,6 @@ const SignInScreen = ({ navigation }) => {
 	);
 };
 
-/*<TextInput
-					style={{ marginTop: 20 }}
-					label="Telefon Numarası"
-					mode="outlined"
-					keyboardType="decimal-pad"
-					render={(props) => (
-						<TextInputMask
-							type={"custom"}
-							options={{
-								mask: "0 (999) 999 9999",
-							}}
-							{...props}
-							value={text}
-							// ref={ref2}
-							includeRawValueInChangeText={true}
-							onChangeText={(text, rawText) => console.log(text, rawText)}
-						/>
-					)}
-				/>*/
-
 export default SignInScreen;
 
 const styles = StyleSheet.create({

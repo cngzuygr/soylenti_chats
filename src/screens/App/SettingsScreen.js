@@ -2,11 +2,24 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { signOutHandler } from "../../../firebase";
+import { useDispatch } from "react-redux";
+import { setLocation } from "../../slices/locationSlice";
+const SettingsScreen = ({ navigation }) => {
+	const dispatch = useDispatch();
 
-const SettingsScreen = () => {
 	async function signOut() {
 		await signOutHandler();
 	}
+
+	const setLocationHandler = () => {
+		console.log("sas");
+		dispatch(
+			setLocation({
+				longitude: 27.0185233,
+				latitude: 39.5963133,
+			})
+		);
+	};
 
 	return (
 		<View
@@ -35,10 +48,16 @@ const SettingsScreen = () => {
 				</TouchableOpacity>
 			</View>
 			<View>
-				<TouchableOpacity style={styles.buttons}>
+				<TouchableOpacity
+					onPress={() => navigation.navigate("AboutScreen")}
+					style={styles.buttons}
+				>
 					<Text style={styles.buttonText}>Uygulama Hakkında</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.buttons}>
+				<TouchableOpacity
+					onPress={() => navigation.navigate("ChatSettingsScreen")}
+					style={styles.buttons}
+				>
 					<Text style={styles.buttonText}>Sohbet Ayarları</Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.buttons}>
@@ -47,7 +66,10 @@ const SettingsScreen = () => {
 				<TouchableOpacity style={styles.buttons}>
 					<Text style={styles.buttonText}>Görüş ve Öneriler</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.buttons}>
+				<TouchableOpacity
+					onPress={() => setLocationHandler()}
+					style={styles.buttons}
+				>
 					<Text style={styles.buttonText}>Hesabı Sil</Text>
 				</TouchableOpacity>
 			</View>

@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useFonts } from "expo-font";
 import { LogBox, TouchableOpacity } from "react-native";
+import * as Location from "expo-location";
+import { Provider } from "react-redux";
+import store from "./src/store";
 //navigation
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,6 +20,9 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import ChatScreen from "./src/screens/App/ChatScreen";
 import SettingsScreen from "./src/screens/App/SettingsScreen";
 import LocationScreen from "./src/screens/App/LocationScreen";
+import AboutScreen from "./src/screens/App/AboutScreen";
+import useLocation from "./src/hooks/useLocation";
+import ChatSettingsScreen from "./src/screens/App/ChatSettingsScreen";
 
 //Ignore warning logs
 LogBox.ignoreLogs([
@@ -170,6 +176,64 @@ const AppRoot = ({ navigation }) => (
 			}}
 		/>
 		<AppStack.Screen
+			name="AboutScreen"
+			component={AboutScreen}
+			options={{
+				headerTitle: "Uygulama Hakkında",
+				headerTitleAlign: "center",
+				headerTitleStyle: {
+					color: "#7AA095",
+					fontSize: 30,
+					fontFamily: "Gloria",
+					textShadowOffset: { width: 1, height: 1 },
+					textShadowColor: "black",
+					textShadowRadius: 1,
+				},
+				headerLeft: () => (
+					<TouchableOpacity
+						style={{
+							marginLeft: 10,
+							marginTop: 10,
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+						onPress={() => navigation.goBack()}
+					>
+						<Ionicons name="chevron-back" size={36} color="black" />
+					</TouchableOpacity>
+				),
+			}}
+		/>
+		<AppStack.Screen
+			name="ChatSettingsScreen"
+			component={ChatSettingsScreen}
+			options={{
+				headerTitle: "Sohbet Ayarları",
+				headerTitleAlign: "center",
+				headerTitleStyle: {
+					color: "#7AA095",
+					fontSize: 30,
+					fontFamily: "Gloria",
+					textShadowOffset: { width: 1, height: 1 },
+					textShadowColor: "black",
+					textShadowRadius: 1,
+				},
+				headerLeft: () => (
+					<TouchableOpacity
+						style={{
+							marginLeft: 10,
+							marginTop: 10,
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+						onPress={() => navigation.goBack()}
+					>
+						<Ionicons name="chevron-back" size={36} color="black" />
+					</TouchableOpacity>
+				),
+			}}
+		/>
+		<AppStack.Screen
 			name="LocationScreen"
 			component={LocationScreen}
 			options={{
@@ -212,9 +276,11 @@ const RootStackScreen = ({ currUser }) => (
 	</RootStack.Navigator>
 );
 
-export default function App() {
+const Navigation = () => {
 	const [fonts] = useFonts({
 		Gloria: require("./assets/fonts/GloriaHallelujah-Regular.ttf"),
+		Inter: require("./assets/fonts/Inter-VariableFont.ttf"),
+		Anek: require("./assets/fonts/AnekLatin-VariableFont.ttf"),
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
@@ -239,5 +305,13 @@ export default function App() {
 		<NavigationContainer>
 			<RootStackScreen currUser={currUser} />
 		</NavigationContainer>
+	);
+};
+
+export default function App() {
+	return (
+		<Provider store={store}>
+			<Navigation />
+		</Provider>
 	);
 }
